@@ -70,7 +70,7 @@ class LSTM:
             
             return [o_t[0], c_t, h_t]
         
-        [o, c, h] = theano.scan(forward_prop, sequences = x, 
+        [o, c, h], updates = theano.scan(forward_prop, sequences = x, 
                                 outputs_info = [None, dict(initial=T.zeros(hidden_dim)), dict(initial=T.zeros(hidden_dim))],
                                 non_sequences = [Wxi, Whi, Wci, Wxf, Whf, Wcf, Wxc, Whc, Wxo, Who, Wco, Wo], 
                                 strict = True)
